@@ -91,7 +91,7 @@ logger "[spot-instance-termination-notice-handler.sh]: putting instance in state
 logger "[spot-instance-termination-notice-handler.sh]: running: /usr/local/bin/aws
 ecs update-container-instances-state --cluster \$ECS_CLUSTER --container-instances \$CONTAINER_INSTANCE --status \$STATUS"
 /usr/local/bin/aws ecs update-container-instances-state --cluster \$ECS_CLUSTER --container-instances \$CONTAINER_INSTANCE --status \$STATUS
-logger "[spot-instance-termination-notice-handler.sh]: running: \"/usr/local/bin/aws sns publish --topic-arn ${snsTopic} --message \"Spot instance termination notice detected. Details: cluster: \$ECS_CLUSTER, container_instance: \$CONTAINER_INSTANCE. Putting instance in state \$STATUS.\""
+logger "[spot-instance-termination-notice-handler.sh]: running: \"/usr/local/bin/aws sns publish --topic-arn ${snstopic} --message \"Spot instance termination notice detected. Details: cluster: \$ECS_CLUSTER, container_instance: \$CONTAINER_INSTANCE. Putting instance in state \$STATUS.\""
 /usr/local/bin/aws sns publish --topic-arn ${snstopic} --message "Spot instance termination notice detected. Details: cluster: \$ECS_CLUSTER, container_instance: \$CONTAINER_INSTANCE. Putting instance in state \$STATUS."
 logger "[spot-instance-termination-notice-handler.sh]: putting myself to sleep..."
 sleep 120

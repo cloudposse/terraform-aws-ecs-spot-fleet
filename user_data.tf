@@ -17,14 +17,14 @@ data "template_cloudinit_config" "config" {
   base64_encode = true
 
   part {
-    order        = 1
+    #order        = 1
     filename     = "init.sh"
     content_type = "text/part-handler"
     content      = "${data.template_file.script.rendered}"
   }
 
   part {
-    order        = 2
+   # order        = 2
     content_type = "text/x-shellscript"
     content      = "${var.additional_user_data}"
   }

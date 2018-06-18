@@ -52,7 +52,7 @@ data "aws_iam_policy_document" "sns_topic_policy" {
   }
 
   statement {
-    sid       = "Allow ${local.alert_for} CloudwatchEvents"
+    sid       = "Allow ${module.label.id} spot fleet CloudwatchEvents"
     actions   = ["sns:Publish"]
     resources = ["${local.sns_topic_arn}"]
 

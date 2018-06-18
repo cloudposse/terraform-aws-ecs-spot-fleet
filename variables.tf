@@ -83,8 +83,8 @@ variable "target_capacity" {
 variable "instance_type_list" {
   type        = "list"
   description = "A list of named instance sizes for the spot fleet"
-  default     = ["c3.large", "c4.large", "m3.large", "m4.large", "m5.large", "r3.large", "r4.large", "c5.large", "i3.large"]
-}
+  default     = ["c4.large", "m3.large", "m4.large", "m5.large", "r3.large", "r4.large", "c5.large", "i3.large"]
+}//"c3.large", 
 
 variable "wait_for_fulfillment" {
   type        = "string"
@@ -140,16 +140,10 @@ variable "target_group_arns" {
   default     = []
 }
 
-variable "existing_key_pair_name" {
+variable "ssh_key" {
   type        = "string"
   description = "An existing keypair name to use"
   default     = ""
-}
-
-variable "generate_key_pair" {
-  type        = "string"
-  description = "Generate a new key pair when true"
-  default     = "false"
 }
 
 variable "cidr_range_for_ssh_access" {
@@ -186,7 +180,7 @@ variable "subnet_ids" {
   description = "A list of the subnet ids that your cluster will belong to"
 }
 
-variable "map_public_ip_on_launch" {
+variable "associate_public_ip_address" {
   type        = "string"
   description = "Give the ec2 server a public IP address when it launches"
   default     = "true"
@@ -202,4 +196,15 @@ variable "outbound_traffic_cidr" {
   type        = "string"
   description = "CIDR block where egress traffic from the instances can reach"
   default     = "0.0.0.0/0"
+}
+
+variable "disk_size_docker" {
+  type = "string"
+  description = "Size in GB for the docker disk volume"
+  default = "15"
+}
+variable "disk_size_root" {
+  type = "string"
+  description = "Size in GB for the root disk volume"
+  default = "10"
 }
