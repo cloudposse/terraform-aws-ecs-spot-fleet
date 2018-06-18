@@ -21,20 +21,19 @@ module "ssh_key_pair" {
   namespace             = "cp"
   stage                 = "prod"
   name                  = "app"
-  ssh_public_key_path   = "."
+  ssh_public_key_path   = "${path.module}"
   generate_ssh_key      = "true"
   private_key_extension = ".pem"
   public_key_extension  = ".pub"
   chmod_command         = "chmod 600 %v"
 }
 
-
 module "fleet" {
-  source = "../"
+  source     = "../"
   namespace  = "cp"
   stage      = "dev"
   name       = "app"
-  key_name = "${module.ssh_key_pair.key_name}"
+  key_name   = "${module.ssh_key_pair.key_name}"
   vpc_id     = "${data.aws_vpc.default.id}"
   subnet_ids = ["${data.aws_subnet_ids.all.ids}"]
 }
@@ -54,9 +53,10 @@ output "cluster_name" {
 output "cluster_arn" {
   value = "${module.fleet.cluster_arn}"
 }
-output "launch_specification" {
-  value = "${module.fleet.launch_specification}"
-}
+
+# output "launch_specification" {
+#   value = "${module.fleet.launch_specification}"
+# }
 output "user_data" {
   value = "${module.fleet.user_data}"
 }

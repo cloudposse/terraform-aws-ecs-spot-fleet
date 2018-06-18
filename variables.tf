@@ -77,14 +77,14 @@ variable "spot_price" {
 variable "target_capacity" {
   type        = "string"
   description = "The number of units to request. You can choose to set the target capacity in terms of instances or a performance characteristic that is important to your application workload, such as vCPUs, memory, or I/O."
-  default     = "3"
+  default     = "4"
 }
 
 variable "instance_type_list" {
   type        = "list"
   description = "A list of named instance sizes for the spot fleet"
   default     = ["c4.large", "m3.large", "m4.large", "m5.large", "r3.large", "r4.large", "c5.large", "i3.large"]
-}//"c3.large", 
+} //"c3.large", 
 
 variable "wait_for_fulfillment" {
   type        = "string"
@@ -107,13 +107,13 @@ variable "valid_until" {
 variable "terminate_instances_with_expiration" {
   type        = "string"
   description = "Indicates whether running Spot instances should be terminated when the Spot fleet request expires."
-  default     = ""
+  default     = "true"
 }
 
 variable "excess_capacity_termination_policy" {
   type        = "string"
-  description = "Indicates whether running Spot instances should be terminated if the target capacity of the Spot fleet request is decreased below the current size of the Spot fleet"
-  default     = ""
+  description = "Indicates whether running Spot instances should be terminated if the target capacity of the Spot fleet request is decreased below the current size of the Spot fleet. Options: noTermination | default"
+  default     = "default"
 }
 
 variable "instance_interruption_behavior" {
@@ -140,7 +140,7 @@ variable "target_group_arns" {
   default     = []
 }
 
-variable "ssh_key" {
+variable "key_name" {
   type        = "string"
   description = "An existing keypair name to use"
   default     = ""
@@ -199,12 +199,13 @@ variable "outbound_traffic_cidr" {
 }
 
 variable "disk_size_docker" {
-  type = "string"
-  description = "Size in GB for the docker disk volume"
-  default = "15"
+  type        = "string"
+  description = "Size in GB for the docker disk volume - minimum 22GB"
+  default     = "22"
 }
+
 variable "disk_size_root" {
-  type = "string"
+  type        = "string"
   description = "Size in GB for the root disk volume"
-  default = "10"
+  default     = "10"
 }
