@@ -1,0 +1,7 @@
+# Upstream changes from _extends are only recognized when modifications are made to this file in the default branch.
+_extends: .github
+repository:
+  name: terraform-aws-ecs-spot-fleet
+  description: '[wip] Terraform module to create a diversified spot fleet for ECS clusters'
+  homepage: https://cloudposse.com/accelerate
+  topics: terraform, terraform-module, ecs, spot-fleet, spot-instances, aws, ecs-cluster
