@@ -5,3 +5,4 @@ repository:
   description: '[wip] Terraform module to create a diversified spot fleet for ECS clusters'
   homepage: https://cloudposse.com/accelerate
   topics: terraform, terraform-module, ecs, spot-fleet, spot-instances, aws, ecs-cluster
+
